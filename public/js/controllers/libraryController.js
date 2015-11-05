@@ -7,7 +7,6 @@ var myApp = angular.module('myApp');
 //var jsonObject = JSON.parse(xhReq.responseText);
 
 
-
 myApp.controller('libraryController', [
 
     '$scope',
@@ -15,12 +14,12 @@ myApp.controller('libraryController', [
     '$localStorage',
     'GistService',
 
-
     function ($scope, $http, $localStorage, GistService) {
     $scope.localStorage = $localStorage;
     $scope.GistService = GistService;
 
     $scope.logged =
+
         $http({
             method: 'GET',
             url: '/auth/gists',
@@ -29,6 +28,7 @@ myApp.controller('libraryController', [
             }
 
         }).then(function successCallback(response) {
+
             jsonObject = JSON.parse(response.data);
             console.log(jsonObject);
             return jsonObject;
