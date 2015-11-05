@@ -1,13 +1,23 @@
 <div id='gistLibrary'>
+    <div ng-if="authToken">
+        <h2>My Gists</h2>
 
-    <h2>Gists</h2>
+        <ul>
+            <li class='gist' ng-repeat="gist in YourGistService.gists">
+                <p> {{ gist.url }}</p><p> {{ gist.description }}</p>
+            </li>
+        </ul>
+    </div>
 
-    <ul>
-        <li class='gist' ng-repeat="gist in GistService.gists">
-            <p> {{ gist.url }}</p><p> {{ gist.description }}</p>
-        </li>
-    </ul>
+    <div>
+        <h2>Recent Public Gists</h2>
 
+        <ul>
+            <li class='gist' ng-repeat="gist in GistService.gists">
+                <p> {{ gist.url }}</p><p> {{ gist.description }}</p>
+            </li>
+        </ul>
+    </div>
 </div>
 
 

@@ -13,13 +13,14 @@ myApp.controller('libraryController', [
     '$http',
     '$localStorage',
     'GistService',
+    'YourGistService',
 
-    function ($scope, $http, $localStorage, GistService) {
+    function ($scope, $http, $localStorage, GistService, YourGistService) {
     $scope.localStorage = $localStorage;
-    $scope.GistService = GistService;
+    $scope.GistService.gists = GistService.gists;
+    $scope.YourGistService.gists = YourGistService.gists;
 
     $scope.logged =
-
         $http({
             method: 'GET',
             url: '/auth/gists',
@@ -31,7 +32,7 @@ myApp.controller('libraryController', [
 
             jsonObject = JSON.parse(response.data);
             console.log(jsonObject);
-            return jsonObject;
+            YourGistService.gists = jsonObject;
         });
 
     $scope.notLogged =
@@ -41,6 +42,4 @@ myApp.controller('libraryController', [
         }).then(function successCallback(response) {
             GistService.gists = response.data;
         });
-
-
 }]);
